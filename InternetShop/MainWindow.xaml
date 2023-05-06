@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InternetShop"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        ResizeMode="NoResize"
+        Title="Ласкаво просимо" Height="362" Width="321" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="81,326,0,0" VerticalAlignment="Top"/>
+        <Label Content="          Ласкаво просимо&#xD;&#xA;до Інтернет магазину ROZETKA" HorizontalAlignment="Center" Margin="0,40,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Логін:" HorizontalAlignment="Left" Margin="54,122,0,0" VerticalAlignment="Top"/>
+        <Label Content="Пароль:" HorizontalAlignment="Left" Margin="42,153,0,0" VerticalAlignment="Top"/>
+        <PasswordBox x:Name="passwordBoxPassword" HorizontalAlignment="Center" Margin="0,157,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textBoxLogin" HorizontalAlignment="Center" Margin="0,126,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="buttonConnectDB" Content="БД" HorizontalAlignment="Center" Margin="0,257,0,0" VerticalAlignment="Top" Height="20" Width="100" Click="buttonConnectDB_Click"/>
+        <Button x:Name="buttonSingIn" Content="Увійти" HorizontalAlignment="Center" Margin="0,195,0,0" VerticalAlignment="Top" Width="100" Click="buttonSingIn_Click"/>
+        <Button Content="Зареєструватися" HorizontalAlignment="Center" Margin="0,226,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click"/>
     </Grid>
 </Window>
