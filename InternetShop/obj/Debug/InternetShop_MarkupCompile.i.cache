@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\ДЗ_Шаг\Windows Forms C#\GitHub\Internet_shop\InternetShop\App.xaml
-21419337794
+41080888460
 
-8835065658
+101402123592
 156-478859635
-MainWindow.xaml;WUserRegister.xaml;
+MainWindow.xaml;WAdmin.xaml;WUser.xaml;WUserRegister.xaml;
 
 True
 

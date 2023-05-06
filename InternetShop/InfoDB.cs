@@ -12,7 +12,6 @@ namespace InternetShop
     {
         public class Client
         {
-            //public Client() { }
             public int id { get; set; }
             public string CSurname { get; set; }
             public string CName { get; set; }
@@ -22,5 +21,17 @@ namespace InternetShop
             public string CLogin { get; set; }
             public string CPassword { get; set; }
         }
+
+        public class Personnel
+        {
+            public int id { get; set; }
+            public string PSurname { get; set; }
+            public string PName { get; set; }
+            public string PPobatkovi { get; set; }
+            public string PLogin { get; set; }
+            public string PPassword { get; set; }
+            public string PRole { get; set; }
+        }
+
     }
 }
