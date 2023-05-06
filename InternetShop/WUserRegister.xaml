@@ -1,0 +1,28 @@
+﻿<Window x:Class="InternetShop.WUserRegister"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InternetShop"
+        mc:Ignorable="d"
+        ResizeMode="NoResize"
+        Title="Реєстрація" Height="386" Width="558" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Label Content="Реєстрація" HorizontalAlignment="Left" Margin="53,31,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold"/>
+        <Label Content="Прізвище:" HorizontalAlignment="Left" Margin="90,85,0,0" VerticalAlignment="Top"/>
+        <Label Content="Ім'я:" HorizontalAlignment="Left" Margin="123,116,0,0" VerticalAlignment="Top"/>
+        <Label Content="По-батькові:" HorizontalAlignment="Left" Margin="77,147,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.509,0.297"/>
+        <TextBox x:Name="textBoxSurName" HorizontalAlignment="Left" Margin="161,89,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="313"/>
+        <TextBox x:Name="textBoxName" HorizontalAlignment="Left" Margin="161,120,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="313"/>
+        <TextBox x:Name="textBoxPobatkovi" HorizontalAlignment="Left" Margin="161,151,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="313"/>
+        <Label Content="Email:" HorizontalAlignment="Left" Margin="115,178,0,0" VerticalAlignment="Top"/>
+        <Label Content="Логін:" HorizontalAlignment="Left" Margin="114,241,0,0" VerticalAlignment="Top"/>
+        <Label Content="Пароль:" HorizontalAlignment="Left" Margin="102,268,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.546,0.361"/>
+        <TextBox x:Name="textBoxEmail" HorizontalAlignment="Left" Margin="161,182,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="313"/>
+        <TextBox x:Name="textBoxLogin" HorizontalAlignment="Left" Margin="161,245,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="313"/>
+        <TextBox x:Name="textBoxPassword" HorizontalAlignment="Left" Margin="161,272,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="313"/>
+        <Label Content="Телефон:" HorizontalAlignment="Left" Margin="96,210,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBoxPhone" HorizontalAlignment="Left" Margin="161,214,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="313"/>
+        <Button x:Name="buttonRegister" Content="Зареєструватися" HorizontalAlignment="Left" Margin="270,320,0,0" VerticalAlignment="Top" Click="buttonRegister_Click"/>
+    </Grid>
+</Window>
