@@ -86,3 +86,7 @@ D:\ДЗ_Шаг\Windows Forms C#\GitHub\Internet_shop\InternetShop\bin\Debug\zh-H
 D:\ДЗ_Шаг\Windows Forms C#\GitHub\Internet_shop\InternetShop\obj\Debug\InternetShop.csproj.CopyComplete
 D:\ДЗ_Шаг\Windows Forms C#\GitHub\Internet_shop\InternetShop\obj\Debug\WUserRegister.g.cs
 D:\ДЗ_Шаг\Windows Forms C#\GitHub\Internet_shop\InternetShop\obj\Debug\WUserRegister.baml
+D:\ДЗ_Шаг\Windows Forms C#\GitHub\Internet_shop\InternetShop\obj\Debug\WAdmin.g.cs
+D:\ДЗ_Шаг\Windows Forms C#\GitHub\Internet_shop\InternetShop\obj\Debug\WUser.g.cs
+D:\ДЗ_Шаг\Windows Forms C#\GitHub\Internet_shop\InternetShop\obj\Debug\WAdmin.baml
+D:\ДЗ_Шаг\Windows Forms C#\GitHub\Internet_shop\InternetShop\obj\Debug\WUser.baml
