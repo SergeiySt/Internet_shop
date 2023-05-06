@@ -7,7 +7,52 @@
         mc:Ignorable="d"
         Title="WAdmin" Height="450" Width="800">
     <Grid>
-        <Label Content="Admin" HorizontalAlignment="Left" Margin="30,22,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label Content="Admin" HorizontalAlignment="Left" Margin="676,10,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <TabControl>
+            <TabItem Header="Товари">
+                <Grid>
+                    <DataGrid Margin="0,0,0,245" x:Name="GoodsGrid">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Width="*" Binding = "{Binding id}" />
+                            <DataGridTextColumn Header ="Назва товару" Width="*" Binding = "{Binding GName}"/>
+                            <DataGridTextColumn Header ="Тип товара" Width="*" Binding = "{Binding GType}"/>
+                            <DataGridTextColumn Header ="Бренд" Width="*" Binding = "{Binding GBrand}"/>
+                            <DataGridTextColumn Header ="Опис товару" Width="*"  Binding = "{Binding GDescription}"/>
+                            <DataGridTextColumn Header ="Кількість товару" Width="*" Binding = "{Binding GCount}"/>
+                            <DataGridTextColumn Header ="Зображення" Width="*" Binding = "{Binding GPicture}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Label Content="Назва товару:" HorizontalAlignment="Left" Margin="26,166,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBoxNameGood" HorizontalAlignment="Left" Margin="112,170,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="523"/>
+                    <Label Content="Тип товара:" HorizontalAlignment="Left" Margin="37,189,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.307,0.542"/>
+                    <TextBox x:Name="textBoxType" HorizontalAlignment="Left" Margin="112,193,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="523"/>
+                    <Label Content="Бренд:" HorizontalAlignment="Left" Margin="61,212,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBoxBrand" HorizontalAlignment="Left" Margin="112,216,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="523"/>
+                    <Label Content="Опис товару:" HorizontalAlignment="Left" Margin="26,235,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBoxDescription" HorizontalAlignment="Left" Margin="112,239,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="523"/>
+                    <Label Content="Кількість товару:" HorizontalAlignment="Left" Margin="6,261,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBoxCount" HorizontalAlignment="Left" Margin="112,265,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="523"/>
+                    <Image x:Name="pictureBox" HorizontalAlignment="Left" Height="112" Margin="640,170,0,0" VerticalAlignment="Top" Width="139"/>
+                    <Button x:Name="buttonAddGood" Content="Додати новий товр" HorizontalAlignment="Left" Margin="236,312,0,0" VerticalAlignment="Top" Width="138"/>
+                    <Button x:Name="buttonUpdateGood" Content="Змінити інформацію про товар" HorizontalAlignment="Left" Margin="397,312,0,0" VerticalAlignment="Top" Width="193"/>
+                    <Button x:Name="buttonDeleteGood" Content="Видалити товар" HorizontalAlignment="Left" Margin="611,312,0,0" VerticalAlignment="Top" Width="135"/>
+                    <Button x:Name="buttonAddPicture" Content="Додати рисунок" HorizontalAlignment="Left" Margin="99,312,0,0" VerticalAlignment="Top" Width="117"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Клієнти">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="127*"/>
+                        <ColumnDefinition Width="20*"/>
+                        <ColumnDefinition Width="647*"/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+            </TabItem>
+            <TabItem HorizontalAlignment="Center" Height="19" Header="Замовлення" VerticalAlignment="Center" Width="78" Background="#FFE5E5E5">
+                <Grid/>
+            </TabItem>
+        </TabControl>
+
 
     </Grid>
 </Window>

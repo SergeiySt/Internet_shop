@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static Dapper.SqlMapper;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace InternetShop
 {
@@ -33,5 +34,16 @@ namespace InternetShop
             public string PRole { get; set; }
         }
 
+
+        public class Goods
+        {
+            public int id { get; set; }
+            public string GName { get; set; }
+            public string GType { get; set; }
+            public string GBrand { get; set; }
+            public string GDescription { get; set; }
+            public int GCount { get; set; }
+            public byte[] GPicture { get; set; }
+        }
     }
 }
