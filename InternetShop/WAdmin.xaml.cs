@@ -31,6 +31,7 @@ namespace InternetShop
         {
             InitializeComponent();
             connectionString = ConfigurationManager.ConnectionStrings["ConnectionDB"].ConnectionString;
+            LoadGoods();
         }
 
         private void buttonAddGood_Click(object sender, RoutedEventArgs e)
@@ -40,7 +41,6 @@ namespace InternetShop
             string brandGoods = textBoxBrand.Text;
             string descriptionGoods = textBoxDescription.Text;
             int countGoods = int.Parse(textBoxCount.Text);
-            // byte[] imageBytes 
 
             using (IDbConnection connection = new SqlConnection(connectionString))
             {
@@ -51,7 +51,6 @@ namespace InternetShop
                     GBrand = brandGoods,
                     GDescription = descriptionGoods,
                     GCount = countGoods,
-                    //GPicture = GetImageBytes()
                     GPicture = GetPictureBytes(pictureBox.Source as BitmapImage)
                 };
 
@@ -61,21 +60,6 @@ namespace InternetShop
             }
             LoadGoods();
         }
-
-        //private byte[] GetImageBytes()
-        //{
-        //    if (pictureBox.Source != null && pictureBox.Source is BitmapImage)
-        //    {
-        //        BitmapImage image = pictureBox.Source as BitmapImage;
-        //        MemoryStream memStream = new MemoryStream();
-        //        JpegBitmapEncoder encoder = new JpegBitmapEncoder();
-        //        encoder.Frames.Add(BitmapFrame.Create(image));
-        //        encoder.Save(memStream);
-        //        return memStream.ToArray();
-        //    }
-        //    return null;
-        //}
-
         private byte[] GetPictureBytes(BitmapImage image)
         {
             if (image == null) return null;
@@ -90,17 +74,12 @@ namespace InternetShop
         }
         private void LoadGoods()
         {
-            // создаем соединение с базой данных
             using (var connection = new SqlConnection(connectionString))
             {
-                // запрос на выборку всех товаров
                 string query = "SELECT * FROM Goods";
-
-                // выполняем запрос и приводим результат к типу List<Goods>
                 List<Goods> goods = connection.Query<Goods>(query).ToList();
-
-                // устанавливаем результат выполнения запроса в качестве источника данных для DataGrid
                 GoodsGrid.ItemsSource = goods;
+               
             }
         }
 
@@ -114,6 +93,29 @@ namespace InternetShop
             {
                 string filename = dlg.FileName;
                 pictureBox.Source = new BitmapImage(new Uri(filename));
+            }
+        }
+
+        private void GoodsGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (GoodsGrid.SelectedItem != null)
+            {
+                Goods selectedGood = (Goods)GoodsGrid.SelectedItem;
+                textBoxNameGood.Text = selectedGood.GName;
+                textBoxType.Text = selectedGood.GType;
+                textBoxBrand.Text = selectedGood.GBrand;
+                textBoxDescription.Text = selectedGood.GDescription;
+                textBoxCount.Text = selectedGood.GCount.ToString();
+
+                byte[] bytes = selectedGood.GPicture;
+                if (bytes != null && bytes.Length > 0)
+                {
+                    BitmapImage bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.StreamSource = new MemoryStream(bytes);
+                    bitmap.EndInit();
+                    pictureBox.Source = bitmap;
+                }
             }
         }
     }

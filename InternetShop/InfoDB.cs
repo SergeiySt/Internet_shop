@@ -7,6 +7,7 @@ using static Dapper.SqlMapper;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
+
 namespace InternetShop
 {
     public class InfoDB
@@ -37,7 +38,7 @@ namespace InternetShop
 
         public class Goods
         {
-            public int id { get; set; }
+            public int id_goods { get; set; }
             public string GName { get; set; }
             public string GType { get; set; }
             public string GBrand { get; set; }

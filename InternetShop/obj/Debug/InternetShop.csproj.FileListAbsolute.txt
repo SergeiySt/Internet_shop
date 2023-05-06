@@ -90,3 +90,4 @@ D:\ДЗ_Шаг\Windows Forms C#\GitHub\Internet_shop\InternetShop\obj\Debug\WAdm
 D:\ДЗ_Шаг\Windows Forms C#\GitHub\Internet_shop\InternetShop\obj\Debug\WUser.g.cs
 D:\ДЗ_Шаг\Windows Forms C#\GitHub\Internet_shop\InternetShop\obj\Debug\WAdmin.baml
 D:\ДЗ_Шаг\Windows Forms C#\GitHub\Internet_shop\InternetShop\obj\Debug\WUser.baml
+D:\ДЗ_Шаг\Windows Forms C#\GitHub\Internet_shop\InternetShop\obj\Debug\GeneratedInternalTypeHelper.g.cs

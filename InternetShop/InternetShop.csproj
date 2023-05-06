@@ -194,6 +194,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BytesToImageConverter.cs" />
     <Compile Include="WAdmin.xaml.cs">
       <DependentUpon>WAdmin.xaml</DependentUpon>
     </Compile>
