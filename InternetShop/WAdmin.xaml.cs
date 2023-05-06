@@ -12,6 +12,13 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+using System.Data.SqlClient;
+using System.Configuration;
+using Dapper;
+using System.Data;
+using System.IO;
+using static InternetShop.InfoDB;
+
 namespace InternetShop
 {
     /// <summary>
@@ -19,9 +26,95 @@ namespace InternetShop
     /// </summary>
     public partial class WAdmin : Window
     {
+        private string connectionString;
         public WAdmin()
         {
             InitializeComponent();
+            connectionString = ConfigurationManager.ConnectionStrings["ConnectionDB"].ConnectionString;
+        }
+
+        private void buttonAddGood_Click(object sender, RoutedEventArgs e)
+        {
+            string nameGoods = textBoxNameGood.Text;
+            string typeGoods = textBoxType.Text;
+            string brandGoods = textBoxBrand.Text;
+            string descriptionGoods = textBoxDescription.Text;
+            int countGoods = int.Parse(textBoxCount.Text);
+            // byte[] imageBytes 
+
+            using (IDbConnection connection = new SqlConnection(connectionString))
+            {
+                InfoDB.Goods goods = new InfoDB.Goods
+                {
+                    GName = nameGoods,
+                    GType = typeGoods,
+                    GBrand = brandGoods,
+                    GDescription = descriptionGoods,
+                    GCount = countGoods,
+                    //GPicture = GetImageBytes()
+                    GPicture = GetPictureBytes(pictureBox.Source as BitmapImage)
+                };
+
+                string sqlQuery = "INSERT INTO Goods(GName, GType, GBrand, GDescription, GCount, GPicture) " +
+                        "VALUES(@GName, @GType, @GBrand, @GDescription, @GCount, @GPicture)";
+                connection.Execute(sqlQuery, goods);
+            }
+            LoadGoods();
+        }
+
+        //private byte[] GetImageBytes()
+        //{
+        //    if (pictureBox.Source != null && pictureBox.Source is BitmapImage)
+        //    {
+        //        BitmapImage image = pictureBox.Source as BitmapImage;
+        //        MemoryStream memStream = new MemoryStream();
+        //        JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+        //        encoder.Frames.Add(BitmapFrame.Create(image));
+        //        encoder.Save(memStream);
+        //        return memStream.ToArray();
+        //    }
+        //    return null;
+        //}
+
+        private byte[] GetPictureBytes(BitmapImage image)
+        {
+            if (image == null) return null;
+
+            using (MemoryStream stream = new MemoryStream())
+            {
+                BitmapEncoder encoder = new PngBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(image));
+                encoder.Save(stream);
+                return stream.ToArray();
+            }
+        }
+        private void LoadGoods()
+        {
+            // создаем соединение с базой данных
+            using (var connection = new SqlConnection(connectionString))
+            {
+                // запрос на выборку всех товаров
+                string query = "SELECT * FROM Goods";
+
+                // выполняем запрос и приводим результат к типу List<Goods>
+                List<Goods> goods = connection.Query<Goods>(query).ToList();
+
+                // устанавливаем результат выполнения запроса в качестве источника данных для DataGrid
+                GoodsGrid.ItemsSource = goods;
+            }
+        }
+
+        private void buttonAddPicture_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            dlg.DefaultExt = ".jpg";
+            dlg.Filter = "JPEG Files (*.jpg)|*.jpg|PNG Files (*.png)|*.png|GIF Files (*.gif)|*.gif|All Files (*.*)|*.*";
+            Nullable<bool> result = dlg.ShowDialog();
+            if (result == true)
+            {
+                string filename = dlg.FileName;
+                pictureBox.Source = new BitmapImage(new Uri(filename));
+            }
         }
     }
 }
