@@ -6,27 +6,29 @@
         xmlns:local="clr-namespace:InternetShop"
         mc:Ignorable="d"
         Title="WAdmin" Height="450" Width="800">
+    <Window.Resources>
+        <local:BytesToImageConverter x:Key="BytesToImageConverter" />
+    </Window.Resources>
     <Grid>
         <Label Content="Admin" HorizontalAlignment="Left" Margin="676,10,0,0" VerticalAlignment="Top" FontSize="20"/>
         <TabControl>
             <TabItem Header="Товари">
                 <Grid>
-                    <DataGrid Margin="0,0,0,245" x:Name="GoodsGrid">
+                    <DataGrid Margin="0,0,0,245" x:Name="GoodsGrid" AutoGenerateColumns="False" SelectionChanged="GoodsGrid_SelectionChanged">
                         <DataGrid.Columns>
-                            <!--<DataGridTextColumn Header="ID" Width="*" Binding = "{Binding id}" />
+                            <DataGridTextColumn Header="ID" Width="*" Binding = "{Binding id_goods}" />
                             <DataGridTextColumn Header ="Назва товару" Width="*" Binding = "{Binding GName}"/>
                             <DataGridTextColumn Header ="Тип товара" Width="*" Binding = "{Binding GType}"/>
                             <DataGridTextColumn Header ="Бренд" Width="*" Binding = "{Binding GBrand}"/>
                             <DataGridTextColumn Header ="Опис товару" Width="*"  Binding = "{Binding GDescription}"/>
                             <DataGridTextColumn Header ="Кількість товару" Width="*" Binding = "{Binding GCount}"/>
-                            <DataGridTextColumn Header ="Зображення" Width="*" Binding = "{Binding GPicture}"/>-->
-                            <DataGridTextColumn Header="ID" Width="*" />
-                            <DataGridTextColumn Header ="Назва товару" Width="*" />
-                            <DataGridTextColumn Header ="Тип товара" Width="*" />
-                            <DataGridTextColumn Header ="Бренд" Width="*" />
-                            <DataGridTextColumn Header ="Опис товару" Width="*"  />
-                            <DataGridTextColumn Header ="Кількість товару" Width="*" />
-                            <DataGridTextColumn Header ="Зображення" Width="*" />
+                            <DataGridTemplateColumn Header ="Зображення" Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Image Width="50" Height="50" Source="{Binding GPicture, Converter={StaticResource BytesToImageConverter}}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                     <Label Content="Назва товару:" HorizontalAlignment="Left" Margin="26,166,0,0" VerticalAlignment="Top"/>
@@ -39,7 +41,7 @@
                     <TextBox x:Name="textBoxDescription" HorizontalAlignment="Left" Margin="112,239,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="523"/>
                     <Label Content="Кількість товару:" HorizontalAlignment="Left" Margin="6,261,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="textBoxCount" HorizontalAlignment="Left" Margin="112,265,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="523"/>
-                    <Image x:Name="pictureBox" HorizontalAlignment="Left" Height="112" Margin="640,170,0,0" VerticalAlignment="Top" Width="139"/>
+                    <Image x:Name="pictureBox" HorizontalAlignment="Left" Height="112" Margin="640,170,0,0" VerticalAlignment="Top" Width="139" Stretch="Fill"/>
                     <Button x:Name="buttonAddGood" Content="Додати новий товар" HorizontalAlignment="Left" Margin="236,312,0,0" VerticalAlignment="Top" Width="138" Height="26" Click="buttonAddGood_Click"/>
                     <Button x:Name="buttonUpdateGood" Content="Змінити інформацію про товар" HorizontalAlignment="Left" Margin="397,312,0,0" VerticalAlignment="Top" Width="193" Height="26"/>
                     <Button x:Name="buttonDeleteGood" Content="Видалити товар" HorizontalAlignment="Left" Margin="611,312,0,0" VerticalAlignment="Top" Width="135" Height="26"/>
