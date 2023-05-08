@@ -4,6 +4,35 @@
         <name>Microsoft.Identity.Client.Extensions.Msal</name>
     </assembly>
     <members>
+        <member name="M:Microsoft.Identity.Client.Extensions.Msal.Accessors.FileWithPermissions.PosixCreate(System.String,System.Int32)">
+            <summary>
+            Equivalent to calling open() with flags  O_CREAT|O_WRONLY|O_TRUNC. O_TRUNC will truncate the file. 
+            See https://man7.org/linux/man-pages/man2/open.2.html
+            </summary>
+        </member>
+        <member name="M:Microsoft.Identity.Client.Extensions.Msal.Accessors.FileWithPermissions.WriteToNewFileWithOwnerRWPermissions(System.String,System.Byte[])">
+            <summary>
+            Creates a new file with "600" permissions (i.e. read / write only by the owner) and writes some data to it.
+            On Windows, file security is more complex, but an equivalent is achieved.
+            </summary>
+            <remarks>
+            This logic will not work on Mono, see https://github.com/NuGet/NuGet.Client/commit/d62db666c710bf95121fe8f5c6a6cbe01985456f
+            </remarks>
+            <exception cref="T:System.PlatformNotSupportedException"></exception>
+        </member>
+        <member name="M:Microsoft.Identity.Client.Extensions.Msal.Accessors.FileWithPermissions.WriteToNewFileWithOwnerRWPermissionsUnix(System.String,System.Byte[])">
+            <summary>
+            Based on https://stackoverflow.com/questions/45132081/file-permissions-on-linux-unix-with-net-core and on 
+            https://github.com/NuGet/NuGet.Client/commit/d62db666c710bf95121fe8f5c6a6cbe01985456f
+            </summary>
+        </member>
+        <member name="M:Microsoft.Identity.Client.Extensions.Msal.Accessors.FileWithPermissions.WriteToNewFileWithOwnerRWPermissionsWindows(System.String,System.Byte[])">
+            <summary>
+            Windows has a more complex file security system. "600" mode, i.e. read/write for owner translates to this in Windows.
+            </summary>
+            <param name="filePath"></param>
+            <param name="data"></param>
+        </member>
         <member name="M:Microsoft.Identity.Client.Extensions.Msal.ICacheAccessor.Clear">
             <summary>
             Deletes the cache
@@ -507,6 +536,20 @@
             </summary>
             <returns>A  value indicating if we are running on mono or not</returns>
         </member>
+        <member name="M:Microsoft.Identity.Client.Extensions.Msal.SharedUtilities.GetCurrentProcessId">
+            <summary>
+            Instantiates the process if not done already and retrieves the id of the process.
+            Caches it for the next call.
+            </summary>
+            <returns>process id</returns>
+        </member>
+        <member name="M:Microsoft.Identity.Client.Extensions.Msal.SharedUtilities.GetCurrentProcessName">
+            <summary>
+            Instantiates the process if not done already and retrieves the name of the process.
+            Caches it for the next call
+            </summary>
+            <returns>process name</returns>
+        </member>
         <member name="M:Microsoft.Identity.Client.Extensions.Msal.SharedUtilities.GetUserRootDirectory">
             <summary>
             Generate the default file location
@@ -681,7 +724,7 @@
             over SSH connections. Users are responsible for security.
             </summary>
             <remarks>You can check if the persistence is available by calling msalCacheHelper.VerifyPersistence()
-            For more details see https://github.com/AzureAD/microsoft-authentication-extensions-for-dotnet/blob/master/docs/keyring_fallback_proposal.md
+            For more details see https://github.com/AzureAD/microsoft-authentication-extensions-for-dotnet/blob/main/docs/keyring_fallback_proposal.md
             </remarks>
             <returns></returns>
         </member>
@@ -697,7 +740,7 @@
             - Certain virtualized Windows scenarios where DPAPI is not available         
             </summary>
             <remarks>You can check if the persistence is available by calling msalCacheHelper.VerifyPersistence()
-            For more details see https://github.com/AzureAD/microsoft-authentication-extensions-for-dotnet/blob/master/docs/keyring_fallback_proposal.md
+            For more details see https://github.com/AzureAD/microsoft-authentication-extensions-for-dotnet/blob/main/docs/keyring_fallback_proposal.md
             </remarks>
         </member>
         <member name="T:Microsoft.Identity.Client.Extensions.Msal.TraceSourceLogger">

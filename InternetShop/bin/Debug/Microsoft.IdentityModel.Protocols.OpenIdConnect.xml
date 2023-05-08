@@ -1335,7 +1335,7 @@
         <member name="F:Microsoft.IdentityModel.Protocols.OpenIdConnect.OpenIdConnectResponseType.Token">
             <summary>
             Defined in OAuth 2.0 spec, included for completion.
-            See: https://datatracker.ietf.org/doc/html/rfc6749#section-11.3.2.
+            See: https://datatracker.ietf.org/doc/html/rfc6749#section-11-3-2.
             </summary>
         </member>
         <member name="T:Microsoft.IdentityModel.Protocols.OpenIdConnect.OpenIdConnectScope">

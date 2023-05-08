@@ -149,7 +149,7 @@
             Gets the Initialization Vector used when encrypting the plaintext.
             </summary>
             <remarks>
-            see: https://datatracker.ietf.org/doc/html/rfc7516#appendix-A.1.4
+            see: https://datatracker.ietf.org/doc/html/rfc7516#appendix-A-1-4
             <para>
             Some algorithms may not use an Initialization Vector.
             If not found an empty string is returned.
@@ -211,7 +211,7 @@
             <remarks>
             Identifies the cryptographic algorithm used to encrypt or determine the value of the Content Encryption Key.
             Applicable to an encrypted JWT {JWE}.
-            see: https://datatracker.ietf.org/doc/html/rfc7516#section-4.1.1
+            see: https://datatracker.ietf.org/doc/html/rfc7516#section-4-1-1
             <para>
             If the 'alg' claim is not found, an empty string is returned.
             </para>
@@ -223,7 +223,7 @@
             </summary>
             <remarks>
             Identifies the recipients that the JWT is intended for.
-            see: https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.3
+            see: https://datatracker.ietf.org/doc/html/rfc7519#section-4-1-3
             <para>
             If the 'aud' claim is not found, enumeration will be empty.
             </para>
@@ -244,8 +244,8 @@
             </summary>
             <remarks>
             Used by JWS applications to declare the media type[IANA.MediaTypes] of the secured content (the payload).
-            see: https://datatracker.ietf.org/doc/html/rfc7516#section-4.1.12 (JWE)
-            see: https://datatracker.ietf.org/doc/html/rfc7515#section-4.1.10 (JWS)
+            see: https://datatracker.ietf.org/doc/html/rfc7516#section-4-1-12 (JWE)
+            see: https://datatracker.ietf.org/doc/html/rfc7515#section-4-1-10 (JWS)
             <para>
             If the 'cty' claim is not found, an empty string is returned.
             </para>
@@ -258,7 +258,7 @@
             <remarks>
             Identifies the content encryption algorithm used to perform authenticated encryption
             on the plaintext to produce the ciphertext and the Authentication Tag.
-            see: https://datatracker.ietf.org/doc/html/rfc7516#section-4.1.2
+            see: https://datatracker.ietf.org/doc/html/rfc7516#section-4-1-2
             </remarks>
         </member>
         <member name="M:Microsoft.IdentityModel.JsonWebTokens.JsonWebToken.GetClaim(System.String)">
@@ -303,7 +303,7 @@
             </summary>
             <remarks>
             Provides a unique identifier for the JWT.
-            see: https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.7
+            see: https://datatracker.ietf.org/doc/html/rfc7519#section-4-1-7
             <para>
             If the 'jti' claim is not found, an empty string is returned.
             </para>
@@ -315,7 +315,7 @@
             </summary>
             <remarks>
             Identifies the time at which the JWT was issued.
-            see: https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.6
+            see: https://datatracker.ietf.org/doc/html/rfc7519#section-4-1-6
             <para>
             If the 'iat' claim is not found, then <see cref="F:System.DateTime.MinValue"/> is returned.
             </para>
@@ -327,7 +327,7 @@
             </summary>
             <remarks>
             Identifies the principal that issued the JWT.
-            see: https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.1
+            see: https://datatracker.ietf.org/doc/html/rfc7519#section-4-1-1
             <para>
             If the 'iss' claim is not found, an empty string is returned.
             </para>
@@ -339,8 +339,8 @@
             </summary>
             <remarks>
             'kid'is a hint indicating which key was used to secure the JWS.
-            see: https://datatracker.ietf.org/doc/html/rfc7515#section-4.1.4 (JWS)
-            see: https://datatracker.ietf.org/doc/html/rfc7516#section-4.1.6 (JWE)
+            see: https://datatracker.ietf.org/doc/html/rfc7515#section-4-1-4 (JWS)
+            see: https://datatracker.ietf.org/doc/html/rfc7516#section-4-1-6 (JWE)
             <para>
             If the 'kid' claim is not found, an empty string is returned.
             </para>
@@ -351,7 +351,7 @@
             Gets the 'value' of the 'sub' claim from the payload.
             </summary>
             <remarks>
-            see: https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.2
+            see: https://datatracker.ietf.org/doc/html/rfc7519#section-4-1-2
             Identifies the principal that is the subject of the JWT.
             <para>
             If the 'sub' claim is not found, an empty string is returned.
@@ -406,7 +406,7 @@
             </summary>
             <remarks>
             Is used by JWT applications to declare the media type.
-            see: https://datatracker.ietf.org/doc/html/rfc7519#section-5.1
+            see: https://datatracker.ietf.org/doc/html/rfc7519#section-5-1
             <para>
             If the 'typ' claim is not found, an empty string is returned.
             </para>
@@ -418,7 +418,7 @@
             </summary>
             <remarks>
             Is the base64url-encoded SHA-1 thumbprint(a.k.a.digest) of the DER encoding of the X.509 certificate used to sign this token.
-            see : https://datatracker.ietf.org/doc/html/rfc7515#section-4.1.7
+            see : https://datatracker.ietf.org/doc/html/rfc7515#section-4-1-7
             <para>
             If the 'x5t' claim is not found, an empty string is returned.
             </para>
@@ -430,7 +430,7 @@
             </summary>
             <remarks>
             Identifies the time before which the JWT MUST NOT be accepted for processing.
-            see: https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.5
+            see: https://datatracker.ietf.org/doc/html/rfc7519#section-4-1-5
             <para>
             If the 'nbf' claim is not found, then <see cref="F:System.DateTime.MinValue"/> is returned.
             </para>
@@ -442,7 +442,7 @@
             </summary>
             <remarks>
             Identifies the expiration time on or after which the JWT MUST NOT be accepted for processing.
-            see: https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.4
+            see: https://datatracker.ietf.org/doc/html/rfc7519#section-4-1-4
             <para>
             If the 'exp' claim is not found, then <see cref="F:System.DateTime.MinValue"/> is returned.
             </para>
@@ -454,7 +454,7 @@
             </summary>
             <remarks>
             The "zip" (compression algorithm) applied to the plaintext before encryption, if any.
-            see: https://datatracker.ietf.org/doc/html/rfc7516#section-4.1.3
+            see: https://datatracker.ietf.org/doc/html/rfc7516#section-4-1-3
             <para>
             If the 'zip' claim is not found, an empty string is returned.
             </para>
@@ -547,10 +547,10 @@
         </member>
         <member name="M:Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.CreateToken(Microsoft.IdentityModel.Tokens.SecurityTokenDescriptor)">
             <summary>
-            Creates a JWS(Json Web Signature).
+            Creates a JWS (Json Web Signature) or a JWE (Json Web Encryption).
             </summary>
             <param name="tokenDescriptor">A <see cref="T:Microsoft.IdentityModel.Tokens.SecurityTokenDescriptor"/> that contains details of contents of the token.</param>
-            <returns>A JWS in Compact Serialization Format.</returns>
+            <returns>A JWS in Compact Serialization Format or a JWE if <see cref="P:Microsoft.IdentityModel.Tokens.SecurityTokenDescriptor.EncryptingCredentials"/> is specified.</returns>
         </member>
         <member name="M:Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.CreateToken(System.String,Microsoft.IdentityModel.Tokens.EncryptingCredentials)">
             <summary>
@@ -793,7 +793,9 @@
             <exception cref="T:System.ArgumentNullException"><paramref name="token"/> is null or empty.</exception>
             <exception cref="T:System.ArgumentException">'token.Length' is greater than <see cref="P:Microsoft.IdentityModel.Tokens.TokenHandler.MaximumTokenSizeInBytes"/>.</exception>
             <remarks><para>If the <paramref name="token"/> is in JWE Compact Serialization format, only the protected header will be deserialized.</para>
-            This method is unable to decrypt the payload. Use <see cref="M:Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateToken(System.String,Microsoft.IdentityModel.Tokens.TokenValidationParameters)"/>to obtain the payload.</remarks>
+            This method is unable to decrypt the payload. Use <see cref="M:Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateToken(System.String,Microsoft.IdentityModel.Tokens.TokenValidationParameters)"/>to obtain the payload.
+            <para>The token is NOT validated and no security decisions should be made about the contents.
+            Use <see cref="M:Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateToken(System.String,Microsoft.IdentityModel.Tokens.TokenValidationParameters)"/> or <see cref="M:Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenAsync(System.String,Microsoft.IdentityModel.Tokens.TokenValidationParameters)"/> to ensure the token is acceptable.</para></remarks>
         </member>
         <member name="M:Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ReadToken(System.String)">
             <summary>
@@ -803,6 +805,8 @@
             <returns>A <see cref="T:Microsoft.IdentityModel.JsonWebTokens.JsonWebToken"/></returns>
             <exception cref="T:System.ArgumentNullException"><paramref name="token"/> is null or empty.</exception>
             <exception cref="T:System.ArgumentException">'token.Length' is greater than <see cref="P:Microsoft.IdentityModel.Tokens.TokenHandler.MaximumTokenSizeInBytes"/>.</exception>
+            <remarks>The token is NOT validated and no security decisions should be made about the contents.
+            <para>Use <see cref="M:Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateToken(System.String,Microsoft.IdentityModel.Tokens.TokenValidationParameters)"/> or <see cref="M:Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenAsync(System.String,Microsoft.IdentityModel.Tokens.TokenValidationParameters)"/> to ensure the token is acceptable.</para></remarks>
         </member>
         <member name="M:Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateToken(System.String,Microsoft.IdentityModel.Tokens.TokenValidationParameters)">
             <summary>
@@ -813,6 +817,9 @@
             <returns>A <see cref="T:Microsoft.IdentityModel.Tokens.TokenValidationResult"/></returns>
         </member>
         <member name="M:Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenAsync(System.String,Microsoft.IdentityModel.Tokens.TokenValidationParameters)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenAsync(Microsoft.IdentityModel.Tokens.SecurityToken,Microsoft.IdentityModel.Tokens.TokenValidationParameters)">
             <inheritdoc/>
         </member>
         <member name="M:Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenAsync(Microsoft.IdentityModel.JsonWebTokens.JsonWebToken,Microsoft.IdentityModel.Tokens.TokenValidationParameters)">
@@ -935,49 +942,49 @@
         </member>
         <member name="F:Microsoft.IdentityModel.JsonWebTokens.JwtHeaderParameterNames.Alg">
             <summary>
-            See: https://datatracker.ietf.org/doc/html/rfc7515#section-4.1.1
+            See: https://datatracker.ietf.org/doc/html/rfc7515#section-4-1-1
             </summary>
         </member>
         <member name="F:Microsoft.IdentityModel.JsonWebTokens.JwtHeaderParameterNames.Cty">
             <summary>
-            See: https://datatracker.ietf.org/doc/html/rfc7515#section-4.1.10
-            Also: https://datatracker.ietf.org/doc/html/rfc7519#section-5.2
+            See: https://datatracker.ietf.org/doc/html/rfc7515#section-4-1-10
+            Also: https://datatracker.ietf.org/doc/html/rfc7519#section-5-2
             </summary>
         </member>
         <member name="F:Microsoft.IdentityModel.JsonWebTokens.JwtHeaderParameterNames.Enc">
             <summary>
-            See: https://datatracker.ietf.org/doc/html/rfc7516#section-4.1.2
+            See: https://datatracker.ietf.org/doc/html/rfc7516#section-4-1-2
             </summary>
         </member>
         <member name="F:Microsoft.IdentityModel.JsonWebTokens.JwtHeaderParameterNames.IV">
             <summary>
-            See: https://datatracker.ietf.org/doc/html/rfc7518#section-4.7.1.1
+            See: https://datatracker.ietf.org/doc/html/rfc7518#section-4-7-1-1
             </summary>
         </member>
         <member name="F:Microsoft.IdentityModel.JsonWebTokens.JwtHeaderParameterNames.Jku">
             <summary>
-            See: https://datatracker.ietf.org/doc/html/rfc7515#section-4.1.2
+            See: https://datatracker.ietf.org/doc/html/rfc7515#section-4-1-2
             </summary>
         </member>
         <member name="F:Microsoft.IdentityModel.JsonWebTokens.JwtHeaderParameterNames.Jwk">
             <summary>
-            See: https://datatracker.ietf.org/doc/html/rfc7515#section-4.1.3
+            See: https://datatracker.ietf.org/doc/html/rfc7515#section-4-1-3
             </summary>
         </member>
         <member name="F:Microsoft.IdentityModel.JsonWebTokens.JwtHeaderParameterNames.Kid">
             <summary>
-            See: https://datatracker.ietf.org/doc/html/rfc7515#section-4.1.4
+            See: https://datatracker.ietf.org/doc/html/rfc7515#section-4-1-4
             </summary>
         </member>
         <member name="F:Microsoft.IdentityModel.JsonWebTokens.JwtHeaderParameterNames.Typ">
             <summary>
-            See: https://datatracker.ietf.org/doc/html/rfc7515#section-4.1.9
-            Also: https://datatracker.ietf.org/doc/html/rfc7519#section-5.1
+            See: https://datatracker.ietf.org/doc/html/rfc7515#section-4-1-9
+            Also: https://datatracker.ietf.org/doc/html/rfc7519#section-5-1
             </summary>
         </member>
         <member name="F:Microsoft.IdentityModel.JsonWebTokens.JwtHeaderParameterNames.X5c">
             <summary>
-            See: https://datatracker.ietf.org/doc/html/rfc7515#section-4.1.6
+            See: https://datatracker.ietf.org/doc/html/rfc7515#section-4-1-6
             </summary>
         </member>
         <member name="F:Microsoft.IdentityModel.JsonWebTokens.JwtHeaderParameterNames.X5t">
@@ -987,27 +994,27 @@
         </member>
         <member name="F:Microsoft.IdentityModel.JsonWebTokens.JwtHeaderParameterNames.X5u">
             <summary>
-            See: https://datatracker.ietf.org/doc/html/rfc7515#section-4.1.5
+            See: https://datatracker.ietf.org/doc/html/rfc7515#section-4-1-5
             </summary>
         </member>
         <member name="F:Microsoft.IdentityModel.JsonWebTokens.JwtHeaderParameterNames.Zip">
             <summary>
-            See: https://datatracker.ietf.org/doc/html/rfc7516#section-4.1.3
+            See: https://datatracker.ietf.org/doc/html/rfc7516#section-4-1-3
             </summary>
         </member>
         <member name="F:Microsoft.IdentityModel.JsonWebTokens.JwtHeaderParameterNames.Epk">
             <summary>
-            See: https://datatracker.ietf.org/doc/html/rfc7518#section-4.6.1.1
+            See: https://datatracker.ietf.org/doc/html/rfc7518#section-4-6-1-1
             </summary>
         </member>
         <member name="F:Microsoft.IdentityModel.JsonWebTokens.JwtHeaderParameterNames.Apu">
             <summary>
-            See: https://datatracker.ietf.org/doc/html/rfc7518#section-4.6.1.2
+            See: https://datatracker.ietf.org/doc/html/rfc7518#section-4-6-1-2
             </summary>
         </member>
         <member name="F:Microsoft.IdentityModel.JsonWebTokens.JwtHeaderParameterNames.Apv">
             <summary>
-            See: https://datatracker.ietf.org/doc/html/rfc7518#section-4.6.1.3
+            See: https://datatracker.ietf.org/doc/html/rfc7518#section-4-6-1-3
             </summary>
         </member>
         <member name="T:Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames">
@@ -1298,15 +1305,15 @@
             <param name="validationParameters">A <see cref="T:Microsoft.IdentityModel.Tokens.TokenValidationParameters"/> required for validation.</param>
             <param name="configuration">The <see cref="T:Microsoft.IdentityModel.Tokens.BaseConfiguration"/> that will be used along with the <see cref="T:Microsoft.IdentityModel.Tokens.TokenValidationParameters"/> to resolve the signing key</param>
             <returns>Returns a <see cref="T:Microsoft.IdentityModel.Tokens.SecurityKey"/> to use for signature validation.</returns>
-            <remarks>If key fails to resolve, then null is returned</remarks>
+            <remarks>Resolve the signing key using configuration then the validationParameters until a key is resolved. If key fails to resolve, then null is returned.</remarks>
         </member>
-        <member name="M:Microsoft.IdentityModel.JsonWebTokens.JwtTokenUtilities.ResolveTokenSigningKey(System.String,System.String,Microsoft.IdentityModel.Tokens.TokenValidationParameters)">
+        <member name="M:Microsoft.IdentityModel.JsonWebTokens.JwtTokenUtilities.ResolveTokenSigningKey(System.String,System.String,System.Collections.Generic.IEnumerable{Microsoft.IdentityModel.Tokens.SecurityKey})">
             <summary>
             Returns a <see cref="T:Microsoft.IdentityModel.Tokens.SecurityKey"/> to use when validating the signature of a token.
             </summary>
             <param name="kid">The <see cref="T:System.String"/> kid field of the token being validated</param>
             <param name="x5t">The <see cref="T:System.String"/> x5t field of the token being validated</param>
-            <param name="validationParameters">A <see cref="T:Microsoft.IdentityModel.Tokens.TokenValidationParameters"/>  required for validation.</param>
+            <param name="signingKeys">A collection of <see cref="T:Microsoft.IdentityModel.Tokens.SecurityKey"/> a signing key to be resolved from.</param>
             <returns>Returns a <see cref="T:Microsoft.IdentityModel.Tokens.SecurityKey"/> to use for signature validation.</returns>
             <remarks>If key fails to resolve, then null is returned</remarks>
         </member>
