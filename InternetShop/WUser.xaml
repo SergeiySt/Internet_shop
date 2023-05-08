@@ -5,9 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InternetShop"
         mc:Ignorable="d"
-        Title="WUser" Height="450" Width="800">
+        Title="WUser" Height="700" Width="1199">
     <Grid>
-        <Label Content="User" HorizontalAlignment="Left" Margin="46,41,0,0" VerticalAlignment="Top" FontSize="22"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="149*"/>
+            <ColumnDefinition Width="1050*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="User" HorizontalAlignment="Left" Margin="10,635,0,0" VerticalAlignment="Top" FontSize="22"/>
+        <TextBlock x:Name="textBlockGoods" HorizontalAlignment="Left" Margin="37,83,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+        <Label Content="Товари в наявності" HorizontalAlignment="Left" Margin="30,17,0,0" VerticalAlignment="Top"/>
+        <GroupBox Header="Замовлення" Margin="37,342,38,94" Grid.ColumnSpan="2"/>
+        <Label Content="Товар" HorizontalAlignment="Left" Margin="62,370,0,0" VerticalAlignment="Top" Width="38"/>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="62,401,0,0" VerticalAlignment="Top"/>
+        <Button Content="Замовити" HorizontalAlignment="Left" Margin="938,620,0,0" VerticalAlignment="Top" Width="74" Grid.Column="1"/>
+        <Button Content="Вийти із магазину" HorizontalAlignment="Left" Margin="799,620,0,0" VerticalAlignment="Top" Width="118" Grid.Column="1"/>
+        <Image x:Name="pictureBox" Grid.Column="1" HorizontalAlignment="Left" Height="100" Margin="858,91,0,0" VerticalAlignment="Top" Width="100"/>
 
     </Grid>
 </Window>

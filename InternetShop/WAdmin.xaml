@@ -20,6 +20,7 @@
                             <DataGridTextColumn Header ="Назва товару" Width="*" Binding = "{Binding GName}"/>
                             <DataGridTextColumn Header ="Тип товара" Width="*" Binding = "{Binding GType}"/>
                             <DataGridTextColumn Header ="Бренд" Width="*" Binding = "{Binding GBrand}"/>
+                            <DataGridTextColumn Header ="Ціна" Width="*" Binding = "{Binding GPrice}"/>
                             <DataGridTextColumn Header ="Опис товару" Width="*"  Binding = "{Binding GDescription}"/>
                             <DataGridTextColumn Header ="Кількість товару" Width="*" Binding = "{Binding GCount}"/>
                             <DataGridTemplateColumn Header ="Зображення" Width="*">
@@ -41,11 +42,13 @@
                     <TextBox x:Name="textBoxDescription" HorizontalAlignment="Left" Margin="112,239,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="523"/>
                     <Label Content="Кількість товару:" HorizontalAlignment="Left" Margin="6,261,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="textBoxCount" HorizontalAlignment="Left" Margin="112,265,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="523"/>
-                    <Image x:Name="pictureBox" HorizontalAlignment="Left" Height="112" Margin="640,170,0,0" VerticalAlignment="Top" Width="139" Stretch="Fill"/>
-                    <Button x:Name="buttonAddGood" Content="Додати новий товар" HorizontalAlignment="Left" Margin="236,312,0,0" VerticalAlignment="Top" Width="138" Height="26" Click="buttonAddGood_Click"/>
-                    <Button x:Name="buttonUpdateGood" Content="Змінити інформацію про товар" HorizontalAlignment="Left" Margin="397,312,0,0" VerticalAlignment="Top" Width="193" Height="26"/>
-                    <Button x:Name="buttonDeleteGood" Content="Видалити товар" HorizontalAlignment="Left" Margin="611,312,0,0" VerticalAlignment="Top" Width="135" Height="26"/>
-                    <Button x:Name="buttonAddPicture" Content="Додати рисунок" HorizontalAlignment="Left" Margin="99,312,0,0" VerticalAlignment="Top" Width="117" Height="26" Click="buttonAddPicture_Click"/>
+                    <Image x:Name="pictureBox" HorizontalAlignment="Left" Height="134" Margin="640,170,0,0" VerticalAlignment="Top" Width="139" Stretch="Fill"/>
+                    <Button x:Name="buttonAddGood" Content="Додати новий товар" HorizontalAlignment="Left" Margin="236,330,0,0" VerticalAlignment="Top" Width="138" Height="26" Click="buttonAddGood_Click"/>
+                    <Button x:Name="buttonUpdateGood" Content="Змінити інформацію про товар" HorizontalAlignment="Left" Margin="397,330,0,0" VerticalAlignment="Top" Width="193" Height="26"/>
+                    <Button x:Name="buttonDeleteGood" Content="Видалити товар" HorizontalAlignment="Left" Margin="611,330,0,0" VerticalAlignment="Top" Width="135" Height="26"/>
+                    <Button x:Name="buttonAddPicture" Content="Додати рисунок" HorizontalAlignment="Left" Margin="99,330,0,0" VerticalAlignment="Top" Width="117" Height="26" Click="buttonAddPicture_Click"/>
+                    <Label Content="Ціна:" HorizontalAlignment="Left" Margin="70,284,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBoxPrice" HorizontalAlignment="Left" Margin="112,288,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="523"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Клієнти">
