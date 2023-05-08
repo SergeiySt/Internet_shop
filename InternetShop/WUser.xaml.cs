@@ -12,6 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+using System.Data.SqlClient;
+using System.Configuration;
+using Dapper;
+using static InternetShop.InfoDB;
+
 namespace InternetShop
 {
     /// <summary>
@@ -19,9 +24,25 @@ namespace InternetShop
     /// </summary>
     public partial class WUser : Window
     {
+        private string connectionString;
         public WUser()
         {
             InitializeComponent();
+            connectionString = ConfigurationManager.ConnectionStrings["ConnectionDB"].ConnectionString;
+        }
+
+        public void SelectedGoods()
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                var goods = connection.Query<Goods>("SELECT * FROM Goods");
+                var selectedGood = goods.FirstOrDefault();
+
+                textBlockGoods.Text = $"{selectedGood.GName} {selectedGood.GBrand} {selectedGood.GPrice} {selectedGood.GDescription}";
+            }
+
+            
         }
     }
 }

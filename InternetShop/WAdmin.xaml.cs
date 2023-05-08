@@ -39,6 +39,7 @@ namespace InternetShop
             string nameGoods = textBoxNameGood.Text;
             string typeGoods = textBoxType.Text;
             string brandGoods = textBoxBrand.Text;
+            decimal price = decimal.Parse(textBoxPrice.Text);
             string descriptionGoods = textBoxDescription.Text;
             int countGoods = int.Parse(textBoxCount.Text);
 
@@ -49,13 +50,14 @@ namespace InternetShop
                     GName = nameGoods,
                     GType = typeGoods,
                     GBrand = brandGoods,
+                    GPrice = price,
                     GDescription = descriptionGoods,
                     GCount = countGoods,
                     GPicture = GetPictureBytes(pictureBox.Source as BitmapImage)
                 };
 
-                string sqlQuery = "INSERT INTO Goods(GName, GType, GBrand, GDescription, GCount, GPicture) " +
-                        "VALUES(@GName, @GType, @GBrand, @GDescription, @GCount, @GPicture)";
+                string sqlQuery = "INSERT INTO Goods(GName, GType, GBrand, GPrice, GDescription, GCount, GPicture) " +
+                        "VALUES(@GName, @GType, @GBrand, @GPrice, @GDescription, @GCount, @GPicture)";
                 connection.Execute(sqlQuery, goods);
             }
             LoadGoods();
@@ -100,21 +102,24 @@ namespace InternetShop
         {
             if (GoodsGrid.SelectedItem != null)
             {
-                Goods selectedGood = (Goods)GoodsGrid.SelectedItem;
-                textBoxNameGood.Text = selectedGood.GName;
-                textBoxType.Text = selectedGood.GType;
-                textBoxBrand.Text = selectedGood.GBrand;
-                textBoxDescription.Text = selectedGood.GDescription;
-                textBoxCount.Text = selectedGood.GCount.ToString();
-
-                byte[] bytes = selectedGood.GPicture;
-                if (bytes != null && bytes.Length > 0)
+                if(GoodsGrid.SelectedItem is Goods selectedGood)
                 {
-                    BitmapImage bitmap = new BitmapImage();
-                    bitmap.BeginInit();
-                    bitmap.StreamSource = new MemoryStream(bytes);
-                    bitmap.EndInit();
-                    pictureBox.Source = bitmap;
+                    textBoxNameGood.Text = selectedGood.GName;
+                    textBoxType.Text = selectedGood.GType;
+                    textBoxBrand.Text = selectedGood.GBrand;
+                    textBoxDescription.Text = selectedGood.GDescription;
+                    textBoxCount.Text = selectedGood.GCount.ToString();
+                    textBoxPrice.Text = selectedGood.GPrice.ToString();
+
+                    byte[] bytes = selectedGood.GPicture;
+                    if (bytes != null && bytes.Length > 0)
+                    {
+                        BitmapImage bitmap = new BitmapImage();
+                        bitmap.BeginInit();
+                        bitmap.StreamSource = new MemoryStream(bytes);
+                        bitmap.EndInit();
+                        pictureBox.Source = bitmap;
+                    }
                 }
             }
         }
