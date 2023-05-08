@@ -1,4 +1,5 @@
 ﻿using System;
+using Dapper.Contrib.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
@@ -8,7 +9,8 @@ using System.Threading.Tasks;
 using static Dapper.SqlMapper;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
-using Dapper.Contrib.Extensions;
+using SQLiteNetExtensions.Attributes;
+using System.Data;
 
 
 namespace InternetShop
@@ -41,6 +43,7 @@ namespace InternetShop
 
         public class Goods
         {
+            [Key]
             public int id_goods { get; set; }
             public string GName { get; set; }
             public string GType { get; set; }
@@ -50,20 +53,18 @@ namespace InternetShop
             public int GCount { get; set; }
             public byte[] GPicture { get; set; }
 
-            [OneToMany("id_goods", "id_goods")]
+            [Computed]
             public ICollection<GoodsOrder> GoodsOrders { get; set; }
         }
 
         public class GoodsOrder
         {
+            [Key]
             public int id_goodsOrder { get; set; }
             public int id_goods { get; set; }
             public int OCount { get; set; }
             public string OAdress { get; set; }
             public bool OStatus { get; set; }
-
-            [ManyToOne("id_goods")]
-            public Goods Goods { get; set; }
         }
     }
 }
