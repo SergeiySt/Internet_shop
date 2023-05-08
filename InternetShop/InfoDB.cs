@@ -19,7 +19,7 @@ namespace InternetShop
     {
         public class Client
         {
-            public int id { get; set; }
+            public int id_client { get; set; }
             public string CSurname { get; set; }
             public string CName { get; set; }
             public string CPobatkovi { get; set; }
@@ -31,7 +31,7 @@ namespace InternetShop
 
         public class Personnel
         {
-            public int id { get; set; }
+            public int id_personnel { get; set; }
             public string PSurname { get; set; }
             public string PName { get; set; }
             public string PPobatkovi { get; set; }
