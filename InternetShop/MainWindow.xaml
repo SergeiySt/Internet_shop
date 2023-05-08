@@ -14,7 +14,7 @@
                     <BeginStoryboard>
                         <Storyboard>
                             <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
-                                         From="116" To="0" Duration="0:0:4" />
+                                         From="116" To="0" Duration="0:0:3" />
                         </Storyboard>
                     </BeginStoryboard>
                 </EventTrigger>

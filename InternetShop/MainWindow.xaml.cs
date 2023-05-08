@@ -18,6 +18,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using Dapper;
 using System.Windows.Forms;
+using System.Net.PeerToPeer;
 
 namespace InternetShop
 {
@@ -71,11 +72,15 @@ namespace InternetShop
 
                     if (personnel.Count == 1)
                     {
+                        surName = personnel[0].PSurname;
+                        Name = personnel[0].PName;
+                        pobatkovi = personnel[0].PPobatkovi;
+
                         var admin = personnel.First();
 
                         if (admin.PRole == "admin")
                         {
-                            WAdmin wAdmin = new WAdmin();
+                            WAdmin wAdmin = new WAdmin(surName, Name, pobatkovi);
                             wAdmin.Show();
                         }
                         else

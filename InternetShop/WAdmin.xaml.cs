@@ -19,6 +19,7 @@ using System.Data;
 using System.IO;
 using static InternetShop.InfoDB;
 using System.Windows.Forms;
+using System.Net.PeerToPeer;
 
 namespace InternetShop
 {
@@ -28,11 +29,24 @@ namespace InternetShop
     public partial class WAdmin : Window
     {
         private string connectionString;
-        public WAdmin()
+
+        private string surName = "";
+        private string Name = "";
+        private string pobatkovi = "";
+
+        public WAdmin(string surName, string Name, string pobatkovi)
         {
             InitializeComponent();
             connectionString = ConfigurationManager.ConnectionStrings["ConnectionDB"].ConnectionString;
             LoadGoods();
+            LoadGoodsClient();
+            LoadGoodsOrder();
+            LoadPerson();
+            this.surName = surName;
+            this.Name = Name;
+            this.pobatkovi = pobatkovi;
+
+            textBlockPerson.Text = $"{surName} {Name} {pobatkovi}";
         }
 
         private void buttonAddGood_Click(object sender, RoutedEventArgs e)
@@ -123,7 +137,40 @@ namespace InternetShop
                
             }
         }
+        private void LoadGoodsClient()
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                string query2 = "SELECT * FROM Client";
+                List<Client> client = connection.Query<Client>(query2).ToList();
+                UsersGrid.ItemsSource = client;
 
+            }
+        }
+
+       
+
+        private void LoadGoodsOrder()
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                string query2 = "SELECT * FROM GoodsOrder";
+                List<GoodsOrder> order = connection.Query<GoodsOrder>(query2).ToList();
+                OrderGrid.ItemsSource = order;
+
+            }
+        }
+
+        private void LoadPerson()
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                string query2 = "SELECT * FROM Personnel";
+                List<Personnel> order = connection.Query<Personnel>(query2).ToList();
+                PersonGrid.ItemsSource = order;
+
+            }
+        }
         private void buttonAddPicture_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
@@ -171,7 +218,7 @@ namespace InternetShop
                 return;
             }
 
-            if (System.Windows.MessageBox.Show("Ви точно хочете видалити користувача", "Попередження", MessageBoxButton.YesNo, (MessageBoxImage)MessageBoxIcon.Question) == MessageBoxResult.Yes)
+            if (System.Windows.MessageBox.Show("Ви точно хочете видалити товар", "Попередження", MessageBoxButton.YesNo, (MessageBoxImage)MessageBoxIcon.Question) == MessageBoxResult.Yes)
             {
                 if (GoodsGrid.SelectedItem != null)
                 {
@@ -297,6 +344,233 @@ namespace InternetShop
             {
                 System.Windows.MessageBox.Show("Неможливо оновити запис. Перевірте, чи всі поля заповнені та вибрано запис в таблиці.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void PersonGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (PersonGrid.SelectedItem != null)
+            {
+                if (PersonGrid.SelectedItem is Personnel selectedPerson)
+                {
+                    textSurNamePerson.Text = selectedPerson.PSurname;
+                    textNamePerson.Text = selectedPerson.PName;
+                    textPobatkoviPerson.Text = selectedPerson.PPobatkovi;
+                    textLoginPerson.Text = selectedPerson.PLogin;
+                    textPasswordPerson.Text = selectedPerson.PPassword;
+                    textRolePerson.Text = selectedPerson.PRole;
+                }
+            }
+        }
+
+        public void ClearPerson()
+        {
+            textSurNamePerson.Text = "";
+            textNamePerson.Text = "";
+            textPobatkoviPerson.Text = "";
+            textLoginPerson.Text = "";
+            textPasswordPerson.Text = "";
+            textRolePerson.Text = "";
+        }
+
+        private bool EditPerson()
+        {
+
+            if (string.IsNullOrWhiteSpace(textSurNamePerson.Text))
+            {
+                System.Windows.MessageBox.Show("Введіть прізвище співробітника", "Примітка", MessageBoxButton.OK, MessageBoxImage.Information);
+                return false;
+            }
+
+            else if (string.IsNullOrWhiteSpace(textNamePerson.Text))
+            {
+                System.Windows.MessageBox.Show("Введіть ім'я співробітника", "Примітка", MessageBoxButton.OK, MessageBoxImage.Information);
+                return false;
+            }
+
+            else if (string.IsNullOrWhiteSpace(textPobatkoviPerson.Text))
+            {
+                System.Windows.MessageBox.Show("Введіть по-батькові співробітника", "Примітка", MessageBoxButton.OK, MessageBoxImage.Information);
+                return false;
+            }
+
+            else if (string.IsNullOrWhiteSpace(textLoginPerson.Text))
+            {
+                System.Windows.MessageBox.Show("Введіть логін співробітника", "Примітка", MessageBoxButton.OK, MessageBoxImage.Information);
+                return false;
+            }
+
+            else if (string.IsNullOrWhiteSpace(textPasswordPerson.Text))
+            {
+                System.Windows.MessageBox.Show("Введіть пароль співробітника", "Примітка", MessageBoxButton.OK, MessageBoxImage.Information);
+                return false;
+            }
+
+            else if (string.IsNullOrWhiteSpace(textRolePerson.Text))
+            {
+                System.Windows.MessageBox.Show("Додати роль співробітника", "Примітка", MessageBoxButton.OK, MessageBoxImage.Information);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        private void buttonAddPerson_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textSurNamePerson.Text))
+            {
+                System.Windows.MessageBox.Show("Введіть прізвище співробітника", "Примітка", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(textNamePerson.Text))
+            {
+                System.Windows.MessageBox.Show("Введіть ім'я співробітника", "Примітка", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(textPobatkoviPerson.Text))
+            {
+                System.Windows.MessageBox.Show("Введіть по-батькові співробітника", "Примітка", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(textLoginPerson.Text))
+            {
+                System.Windows.MessageBox.Show("Введіть логін співробітника", "Примітка", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(textPasswordPerson.Text))
+            {
+                System.Windows.MessageBox.Show("Введіть пароль співробітника", "Примітка", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(textRolePerson.Text))
+            {
+                System.Windows.MessageBox.Show("Додати роль співробітника", "Примітка", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            string surnamePerson = textSurNamePerson.Text;
+            string namePerson = textNamePerson.Text;
+            string pobatkoviPerson = textPobatkoviPerson.Text;
+            string loginPerson = textLoginPerson.Text;
+            string passwordPerson = textPasswordPerson.Text;
+            string rolePerson = textRolePerson.Text;
+
+
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                var existingPerson = db.QueryFirstOrDefault<Personnel>("SELECT * FROM Personnel WHERE PLogin = @loginPerson", new { loginPerson });
+                if (existingPerson != null)
+                {
+                    System.Windows.MessageBox.Show("Cпівробітник із таким логіном вже існує", "Примітка", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
+            }
+
+            using (IDbConnection connection = new SqlConnection(connectionString))
+            {
+                InfoDB.Personnel personnel = new InfoDB.Personnel()
+                {
+                    PSurname = surnamePerson,
+                    PName = namePerson,
+                    PPobatkovi = pobatkoviPerson,
+                    PLogin = loginPerson,
+                    PPassword = passwordPerson,
+                    PRole = rolePerson,
+                    
+                };
+
+                string sqlQuery = "INSERT INTO Personnel(PSurname, PName, PPobatkovi, PLogin, PPassword, PRole)" +
+                    "VALUES (@PSurname, @PName, @PPobatkovi, @PLogin, @PPassword, @PRole)";
+                connection.Execute(sqlQuery, personnel);
+            }
+            ClearPerson();
+            LoadPerson();
+        }
+
+        private void buttonUpdatePerson_Click(object sender, RoutedEventArgs e)
+        {
+            if (PersonGrid.SelectedItem != null)
+            {
+                InfoDB.Personnel selectedPerson = PersonGrid.SelectedItem as InfoDB.Personnel;
+                if (selectedPerson != null)
+                {
+                    int id = selectedPerson.id_personnel; // получаем id из объекта
+
+                    if (EditPerson())
+                    {
+                        string surnamePerson = textSurNamePerson.Text;
+                        string namePerson = textNamePerson.Text;
+                        string pobatkoviPerson = textPobatkoviPerson.Text;
+                        string loginPerson = textLoginPerson.Text;
+                        string passwordPerson = textPasswordPerson.Text;
+                        string rolePerson = textRolePerson.Text;
+
+
+                        using (IDbConnection connection3 = new SqlConnection(connectionString))
+                        {
+                            string sqlQuery = "UPDATE Personnel SET PSurname = @PSurname, PName = @PName, PPobatkovi = @PPobatkovi, PLogin = @PLogin, " +
+                                              "PPassword = @PPassword, PRole = @PRole WHERE id_personnel = @id_personnel";
+                            connection3.Execute(sqlQuery, new
+                            {
+                                PSurname = surnamePerson,
+                                PName = namePerson,
+                                PPobatkovi = pobatkoviPerson,
+                                PLogin = loginPerson,
+                                PPassword = passwordPerson,
+                                PRole = rolePerson,
+
+                                id_personnel = id
+                            });
+                        }
+                        ClearPerson();
+                        LoadPerson();
+                    }
+                }
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Неможливо оновити запис. Перевірте, чи всі поля заповнені та вибрано запис в таблиці.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void buttonDeletePerson_Click(object sender, RoutedEventArgs e)
+        {
+            if (PersonGrid.SelectedItems.Count == 0)
+            {
+                System.Windows.MessageBox.Show("Виберіть запис для видалення.", "Error", MessageBoxButton.OK, (MessageBoxImage)MessageBoxIcon.Error);
+                return;
+            }
+
+            if (System.Windows.MessageBox.Show("Ви точно хочете видалити співробітника", "Попередження", MessageBoxButton.YesNo, (MessageBoxImage)MessageBoxIcon.Question) == MessageBoxResult.Yes)
+            {
+                if (PersonGrid.SelectedItem != null)
+                {
+                    int id = ((InfoDB.Personnel)PersonGrid.SelectedItem).id_personnel;
+
+                    using (IDbConnection connection = new SqlConnection(connectionString))
+                    {
+                        string sqlQuery = "DELETE FROM Personnel WHERE id_personnel = @id_personnel";
+                        connection.Execute(sqlQuery, new { id_personnel = id });
+                        System.Windows.MessageBox.Show("Успішно видалено");
+                    }
+
+                    ClearPerson();
+                    LoadPerson();
+
+                }
+            }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+           
         }
     }
 }

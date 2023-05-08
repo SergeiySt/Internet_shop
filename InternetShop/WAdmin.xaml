@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InternetShop"
         mc:Ignorable="d"
-        Title="WAdmin" Height="450" Width="800">
+        ResizeMode="NoResize"
+        Title="Сервіс" Height="606" Width="806" WindowStartupLocation="CenterScreen" Icon="/Picture/icons8-servis-32.png" Closing="Window_Closing">
     <Window.Resources>
         <local:BytesToImageConverter x:Key="BytesToImageConverter" />
     </Window.Resources>
@@ -14,7 +15,7 @@
         <TabControl>
             <TabItem Header="Товари">
                 <Grid>
-                    <DataGrid Margin="0,0,0,245" x:Name="GoodsGrid" AutoGenerateColumns="False" SelectionChanged="GoodsGrid_SelectionChanged">
+                    <DataGrid x:Name="GoodsGrid" AutoGenerateColumns="False" SelectionChanged="GoodsGrid_SelectionChanged" Height="330" VerticalAlignment="Top">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID" Width="*" Binding = "{Binding id_goods}" />
                             <DataGridTextColumn Header ="Назва товару" Width="*" Binding = "{Binding GName}"/>
@@ -32,39 +33,88 @@
                             </DataGridTemplateColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Label Content="Назва товару:" HorizontalAlignment="Left" Margin="26,166,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="textBoxNameGood" HorizontalAlignment="Left" Margin="112,170,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="523"/>
-                    <Label Content="Тип товара:" HorizontalAlignment="Left" Margin="37,189,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.307,0.542"/>
-                    <TextBox x:Name="textBoxType" HorizontalAlignment="Left" Margin="112,193,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="523"/>
-                    <Label Content="Бренд:" HorizontalAlignment="Left" Margin="61,212,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="textBoxBrand" HorizontalAlignment="Left" Margin="112,216,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="523"/>
-                    <Label Content="Опис товару:" HorizontalAlignment="Left" Margin="26,235,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="textBoxDescription" HorizontalAlignment="Left" Margin="112,239,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="523"/>
-                    <Label Content="Кількість товару:" HorizontalAlignment="Left" Margin="6,261,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="textBoxCount" HorizontalAlignment="Left" Margin="112,265,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="523"/>
-                    <Image x:Name="pictureBox" HorizontalAlignment="Left" Height="134" Margin="640,170,0,0" VerticalAlignment="Top" Width="139" Stretch="Fill"/>
-                    <Button x:Name="buttonAddGood" Content="Додати новий товар" HorizontalAlignment="Left" Margin="236,330,0,0" VerticalAlignment="Top" Width="138" Height="26" Click="buttonAddGood_Click"/>
-                    <Button x:Name="buttonUpdateGood" Content="Змінити інформацію про товар" HorizontalAlignment="Left" Margin="397,330,0,0" VerticalAlignment="Top" Width="193" Height="26" Click="buttonUpdateGood_Click"/>
-                    <Button x:Name="buttonDeleteGood" Content="Видалити товар" HorizontalAlignment="Left" Margin="611,330,0,0" VerticalAlignment="Top" Width="135" Height="26" Click="buttonDeleteGood_Click"/>
-                    <Button x:Name="buttonAddPicture" Content="Додати рисунок" HorizontalAlignment="Left" Margin="99,330,0,0" VerticalAlignment="Top" Width="117" Height="26" Click="buttonAddPicture_Click"/>
-                    <Label Content="Ціна:" HorizontalAlignment="Left" Margin="70,284,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="textBoxPrice" HorizontalAlignment="Left" Margin="112,288,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="523"/>
+                    <Label Content="Назва товару:" HorizontalAlignment="Left" Margin="35,335,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBoxNameGood" HorizontalAlignment="Left" Margin="121,339,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="523"/>
+                    <Label Content="Тип товара:" HorizontalAlignment="Left" Margin="46,358,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.307,0.542"/>
+                    <TextBox x:Name="textBoxType" HorizontalAlignment="Left" Margin="121,362,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="523"/>
+                    <Label Content="Бренд:" HorizontalAlignment="Left" Margin="70,381,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBoxBrand" HorizontalAlignment="Left" Margin="121,385,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="523"/>
+                    <Label Content="Опис товару:" HorizontalAlignment="Left" Margin="35,404,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBoxDescription" HorizontalAlignment="Left" Margin="121,408,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="523"/>
+                    <Label Content="Кількість товару:" HorizontalAlignment="Left" Margin="15,430,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBoxCount" HorizontalAlignment="Left" Margin="121,434,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="523"/>
+                    <Image x:Name="pictureBox" HorizontalAlignment="Left" Height="134" Margin="649,339,0,0" VerticalAlignment="Top" Width="139" Stretch="Fill"/>
+                    <Button x:Name="buttonAddGood" Content="Додати новий товар" HorizontalAlignment="Left" Margin="245,499,0,0" VerticalAlignment="Top" Width="138" Height="26" Click="buttonAddGood_Click"/>
+                    <Button x:Name="buttonUpdateGood" Content="Змінити інформацію про товар" HorizontalAlignment="Left" Margin="406,499,0,0" VerticalAlignment="Top" Width="193" Height="26" Click="buttonUpdateGood_Click"/>
+                    <Button x:Name="buttonDeleteGood" Content="Видалити товар" HorizontalAlignment="Left" Margin="620,499,0,0" VerticalAlignment="Top" Width="135" Height="26" Click="buttonDeleteGood_Click"/>
+                    <Button x:Name="buttonAddPicture" Content="Додати рисунок" HorizontalAlignment="Left" Margin="108,499,0,0" VerticalAlignment="Top" Width="117" Height="26" Click="buttonAddPicture_Click"/>
+                    <Label Content="Ціна:" HorizontalAlignment="Left" Margin="79,453,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBoxPrice" HorizontalAlignment="Left" Margin="121,457,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="523"/>
+                    <Label Content="Адміністратор:" HorizontalAlignment="Left" Margin="485,-28,0,0" VerticalAlignment="Top" Width="93" Height="26"/>
+                    <TextBlock x:Name="textBlockPerson" HorizontalAlignment="Left" Margin="578,-23,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Foreground="#FF2136E4"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Клієнти">
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="127*"/>
-                        <ColumnDefinition Width="20*"/>
-                        <ColumnDefinition Width="647*"/>
-                    </Grid.ColumnDefinitions>
+                    <DataGrid x:Name="UsersGrid" AutoGenerateColumns="False" Height="330" VerticalAlignment="Top" Margin="10,0,10,0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Width="*" Binding = "{Binding id_client}" />
+                            <DataGridTextColumn Header ="Прізвище" Width="*" Binding = "{Binding CSurname}"/>
+                            <DataGridTextColumn Header ="Ім'я" Width="*" Binding = "{Binding CName}"/>
+                            <DataGridTextColumn Header ="По-батькові" Width="*" Binding = "{Binding CPobatkovi}"/>
+                            <DataGridTextColumn Header ="Email" Width="*" Binding = "{Binding CEmail}"/>
+                            <DataGridTextColumn Header ="Телефон" Width="*"  Binding = "{Binding LPhone}"/>
+                            <DataGridTextColumn Header ="Логін" Width="*" Binding = "{Binding CLogin}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </Grid>
             </TabItem>
             <TabItem HorizontalAlignment="Center" Height="19" Header="Замовлення" VerticalAlignment="Center" Width="78" Background="#FFE5E5E5">
-                <Grid/>
+                <Grid>
+                    <DataGrid x:Name="OrderGrid" AutoGenerateColumns="False" Height="330" VerticalAlignment="Top" Margin="10,0,10,0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Width="*" Binding = "{Binding id_goodsOrder}" />
+                            <DataGridTextColumn Header ="Номер замовлення" Width="*" Binding = "{Binding ONumberOrder}"/>
+                            <DataGridTextColumn Header ="Назва товара" Width="*" Binding = "{Binding ONameGoods}"/>
+                            <DataGridTextColumn Header ="Кількість" Width="*" Binding = "{Binding OCount}"/>
+                            <DataGridTextColumn Header ="Адреса" Width="*" Binding = "{Binding OAdress}"/>
+                            <DataGridTextColumn Header ="ФІО" Width="*"  Binding = "{Binding OFIO}"/>
+                            <DataGridTextColumn Header ="Ціна" Width="*" Binding = "{Binding OPrice}"/>
+                            <DataGridTextColumn Header ="Статус" Width="*" Binding = "{Binding OStatus}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem HorizontalAlignment="Center" Height="19" Header="Адміністратори" VerticalAlignment="Top" Width="105" Margin="0,1,0,0">
+                <Grid>
+                    <DataGrid x:Name="PersonGrid" AutoGenerateColumns="False" Height="203" VerticalAlignment="Top" Margin="10,0,10,0" SelectionChanged="PersonGrid_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Width="*" Binding = "{Binding id_personnel}" />
+                            <DataGridTextColumn Header ="Прізвище" Width="*" Binding = "{Binding PSurname}"/>
+                            <DataGridTextColumn Header ="Ім'я" Width="*" Binding = "{Binding PName}"/>
+                            <DataGridTextColumn Header ="По-батькові" Width="*" Binding = "{Binding PPobatkovi}"/>
+                            <DataGridTextColumn Header ="Логін" Width="*"  Binding = "{Binding PLogin}"/>
+                            <DataGridTextColumn Header ="Пароль" Width="*" Binding = "{Binding PPassword}"/>
+                            <DataGridTextColumn Header ="Роль" Width="*" Binding = "{Binding PRole}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Label Content="Прізвище:" HorizontalAlignment="Left" Margin="21,218,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textSurNamePerson" HorizontalAlignment="Left" Margin="92,222,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="698"/>
+                    <Label Content="Ім'я:" HorizontalAlignment="Left" Margin="54,241,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textNamePerson" HorizontalAlignment="Left" Margin="92,245,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="698"/>
+                    <Label Content="По-батькові:" HorizontalAlignment="Left" Margin="10,263,0,0" VerticalAlignment="Top"/>
+                    <TextBox  x:Name="textPobatkoviPerson" HorizontalAlignment="Left" Margin="92,268,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="698"/>
+                    <Label Content="Логін:" HorizontalAlignment="Left" Margin="45,287,0,0" VerticalAlignment="Top"/>
+                    <TextBox  x:Name="textLoginPerson" HorizontalAlignment="Left" Margin="92,291,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="698"/>
+                    <Label Content="Пароль:" HorizontalAlignment="Left" Margin="33,310,0,0" VerticalAlignment="Top"/>
+                    <TextBox  x:Name="textPasswordPerson" HorizontalAlignment="Left" Margin="92,314,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="698"/>
+                    <Label Content="Роль:" HorizontalAlignment="Left" Margin="48,333,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.517,0.106"/>
+                    <TextBox  x:Name="textRolePerson" HorizontalAlignment="Left" Margin="92,337,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="698"/>
+                    <Button x:Name="buttonDeletePerson" Content="Видалити" HorizontalAlignment="Left" Margin="657,487,0,0" VerticalAlignment="Top" Height="29" Width="91" Click="buttonDeletePerson_Click"/>
+                    <Button x:Name="buttonUpdatePerson" Content="Змінити" HorizontalAlignment="Left" Margin="524,487,0,0" VerticalAlignment="Top" Width="91" Height="29" Click="buttonUpdatePerson_Click"/>
+                    <Button x:Name="buttonAddPerson" Content="Додати " HorizontalAlignment="Left" Margin="385,487,0,0" VerticalAlignment="Top" Width="91" Height="29" Click="buttonAddPerson_Click"/>
+                </Grid>
             </TabItem>
         </TabControl>
-
-
     </Grid>
 </Window>

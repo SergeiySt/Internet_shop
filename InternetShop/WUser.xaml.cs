@@ -170,8 +170,10 @@ namespace InternetShop
 
         private void buttonExit_Click(object sender, RoutedEventArgs e)
         {
-            //System.Windows.Application.Current.Shutdown();
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
             this.Close();
+            
         }
     }
 }
