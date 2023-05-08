@@ -16,6 +16,9 @@ using System.Data.SqlClient;
 using System.Configuration;
 using Dapper;
 using static InternetShop.InfoDB;
+using System.IO;
+using System.Windows.Forms;
+using System.Data;
 
 namespace InternetShop
 {
@@ -25,24 +28,150 @@ namespace InternetShop
     public partial class WUser : Window
     {
         private string connectionString;
-        public WUser()
+
+        private string surName = "";
+        private string Name = "";
+        private string pobatkovi = "";
+        public WUser(string surName, string Name, string pobatkovi)
         {
             InitializeComponent();
+            DataContext = this;
             connectionString = ConfigurationManager.ConnectionStrings["ConnectionDB"].ConnectionString;
+            LoadGoods();
+
+            this.surName = surName;
+            this.Name = Name;
+            this.pobatkovi= pobatkovi;
+            FIO.Text = $"{surName} {Name} {pobatkovi}";
+
+            GoodsGrid2.IsReadOnly = true;
         }
 
-        public void SelectedGoods()
+        private void LoadGoods()
         {
             using (var connection = new SqlConnection(connectionString))
             {
-                connection.Open();
-                var goods = connection.Query<Goods>("SELECT * FROM Goods");
-                var selectedGood = goods.FirstOrDefault();
+                string query = "SELECT * FROM Goods";
+                List<Goods> goods = connection.Query<Goods>(query).ToList();
+                GoodsGrid2.ItemsSource = goods;
 
-                textBlockGoods.Text = $"{selectedGood.GName} {selectedGood.GBrand} {selectedGood.GPrice} {selectedGood.GDescription}";
+            }
+        }
+        private void GoodsGrid_SelectionChanged2(object sender, SelectionChangedEventArgs e)
+        {
+            textBoxCount.Text = "1";
+            int count = int.Parse(textBoxCount.Text);
+
+            if (GoodsGrid2.SelectedItem != null)
+            {
+                if (GoodsGrid2.SelectedItem is Goods selectedGood)
+                {
+                    textBoxNameTovar.Text = selectedGood.GName;
+
+                    textBlockSumm.Text = $"{selectedGood.GPrice} $";
+
+                    byte[] bytes = selectedGood.GPicture;
+                    if (bytes != null && bytes.Length > 0)
+                    {
+                        BitmapImage bitmap = new BitmapImage();
+                        bitmap.BeginInit();
+                        bitmap.StreamSource = new MemoryStream(bytes);
+                        bitmap.EndInit();
+                        pictureBox2.Source = bitmap;
+                    }
+                }
+            }
+        }
+
+        private void textBoxCount_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            decimal count;
+            if (decimal.TryParse(textBoxCount.Text, out count))
+            {
+                decimal price;
+                if (decimal.TryParse(textBlockSumm.Text.Replace("$", ""), out price))
+                {
+                    textBlockSumm.Text = $"{price * count} $";
+                }
+            }
+        }
+
+        private void buttonOrder_Click(object sender, RoutedEventArgs e)
+        {
+
+            Random random = new Random();
+            int randomNumber = random.Next(100000, 999999);
+
+            int numberOrder = randomNumber - 1;
+            string nameTovar = textBoxNameTovar.Text;
+            //decimal countTovar = decimal.Parse(textBoxCount.Text);
+            decimal countTovar;
+            bool countParsed = decimal.TryParse(textBoxCount.Text, out countTovar);
+            string adress = textBoxAdress.Text;
+            string fio = FIO.Text;
+            //decimal price = decimal.Parse(textBlockSumm.Text.Replace("$", ""));
+            decimal price;
+            bool priceParsed = decimal.TryParse(textBlockSumm.Text.Replace("$", ""), out price);
+            bool chek = false;
+
+            if (string.IsNullOrEmpty(nameTovar))
+            {
+                System.Windows.MessageBox.Show("Поле 'Назва товару' не заповнено", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
 
-            
+            if (!countParsed || countTovar <= 0)
+            {
+                System.Windows.MessageBox.Show("Поле 'Кількість товару' не заповнено або заповнено некоректно", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(textBoxAdress.Text))
+            {
+                System.Windows.MessageBox.Show("Поле 'Адреса доставки' не заповнене", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            using (IDbConnection connection = new SqlConnection(connectionString))
+            {
+                InfoDB.GoodsOrder goodsOrder = new InfoDB.GoodsOrder
+                {
+                    ONumberOrder = numberOrder,
+                    ONameGoods = nameTovar,
+                    OCount = int.Parse(textBoxCount.Text),
+                    OAdress = adress,
+                    OFIO = fio,
+                    OPrice = price,
+                    OStatus = chek
+                };
+
+                string sqlQuery = "INSERT INTO GoodsOrder(ONumberOrder, ONameGoods, OCount, OAdress, OFIO, OPrice, OStatus) " +
+                    "VALUES(@ONumberOrder, @ONameGoods, @OCount, @OAdress, @OFIO, @OPrice, @OStatus)";
+                connection.Execute(sqlQuery, goodsOrder);
+            }
+
+            ClearText();
+
+            System.Windows.MessageBox.Show($" Номер вашого замовлення: {numberOrder}\n" +
+                $"Назва товару: {nameTovar}\n" +
+                $"Загальна сума: {price}\n" +
+                $"\n" +
+                $"Дякую вам за покупку!", "Замовлення", MessageBoxButton.OK, (MessageBoxImage)MessageBoxIcon.Information);
+        }
+
+        private void ClearText()
+        {
+            textBoxNameTovar.Text = " ";
+            textBoxCount.Text = " ";
+            textBoxAdress.Text = " ";
+            textBlockSumm.Text = " ";
+            pictureBox2.Source = null;
+        }
+
+        private void buttonExit_Click(object sender, RoutedEventArgs e)
+        {
+            //System.Windows.Application.Current.Shutdown();
+            this.Close();
         }
     }
 }

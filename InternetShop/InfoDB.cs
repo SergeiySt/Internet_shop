@@ -43,7 +43,6 @@ namespace InternetShop
 
         public class Goods
         {
-            [Key]
             public int id_goods { get; set; }
             public string GName { get; set; }
             public string GType { get; set; }
@@ -52,18 +51,17 @@ namespace InternetShop
             public string GDescription { get; set; }
             public int GCount { get; set; }
             public byte[] GPicture { get; set; }
-
-            [Computed]
-            public ICollection<GoodsOrder> GoodsOrders { get; set; }
         }
 
         public class GoodsOrder
         {
-            [Key]
             public int id_goodsOrder { get; set; }
-            public int id_goods { get; set; }
+            public int ONumberOrder { get; set; }
+            public string ONameGoods { get; set; }
             public int OCount { get; set; }
             public string OAdress { get; set; }
+            public string OFIO { get; set; }
+            public decimal OPrice { get; set; }
             public bool OStatus { get; set; }
         }
     }

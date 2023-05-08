@@ -6,15 +6,45 @@
         xmlns:local="clr-namespace:InternetShop"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        Title="Ласкаво просимо" Height="362" Width="321" WindowStartupLocation="CenterScreen">
-    <Grid>
-        <Label Content="          Ласкаво просимо&#xD;&#xA;до Інтернет магазину ROZETKA" HorizontalAlignment="Center" Margin="0,40,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Label Content="Логін:" HorizontalAlignment="Left" Margin="54,122,0,0" VerticalAlignment="Top"/>
-        <Label Content="Пароль:" HorizontalAlignment="Left" Margin="42,153,0,0" VerticalAlignment="Top"/>
-        <PasswordBox x:Name="passwordBoxPassword" HorizontalAlignment="Center" Margin="0,157,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="textBoxLogin" HorizontalAlignment="Center" Margin="0,126,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="buttonConnectDB" Content="БД" HorizontalAlignment="Center" Margin="0,257,0,0" VerticalAlignment="Top" Height="20" Width="100" Click="buttonConnectDB_Click"/>
-        <Button x:Name="buttonSingIn" Content="Увійти" HorizontalAlignment="Center" Margin="0,195,0,0" VerticalAlignment="Top" Width="100" Click="buttonSingIn_Click"/>
-        <Button Content="Зареєструватися" HorizontalAlignment="Center" Margin="0,226,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click"/>
+        Title="Ласкаво просимо" Height="362" Width="321" WindowStartupLocation="CenterScreen" Icon="/Picture/icons8-voyty32.png">
+    <Window.Resources>
+        <Style TargetType="Canvas">
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+                                         From="116" To="0" Duration="0:0:4" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type FrameworkElement}" x:Key="FadeInStyle">
+            <Setter Property="Opacity" Value="0"/>
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:4"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid Background="#FFC3ECE7">
+        <Label Content="          Ласкаво просимо&#xD;&#xA;до Інтернет магазину ROZETKA" HorizontalAlignment="Center" Margin="0,40,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FF1618B5" FontWeight="Bold" Style="{StaticResource FadeInStyle}"/>
+        <Canvas HorizontalAlignment="Left" Height="124" Margin="56,120,0,0" VerticalAlignment="Top" Width="178">
+            <Label Content="Логін:" Foreground="#FF1618B5" HorizontalAlignment="Left" Canvas.Left="12" VerticalAlignment="Top"/>
+            <Label Content="Пароль:" Foreground="#FF1618B5" HorizontalAlignment="Left" Canvas.Top="31" VerticalAlignment="Top"/>
+            <PasswordBox x:Name="passwordBoxPassword" Width="120" Foreground="#FF1618B5" HorizontalAlignment="Left" Canvas.Left="58" Canvas.Top="35" VerticalAlignment="Top"/>
+            <TextBox x:Name="textBoxLogin" TextWrapping="Wrap" Width="120" Foreground="#FF1618B5" HorizontalAlignment="Left" Canvas.Left="58" Canvas.Top="4" VerticalAlignment="Top"/>
+            <Button x:Name="buttonSingIn" Content="Увійти" Width="100" Click="buttonSingIn_Click" HorizontalAlignment="Left" Canvas.Left="68" Canvas.Top="73" VerticalAlignment="Top"/>
+            <Button Content="Зареєструватися" Width="100" Click="Button_Click" HorizontalAlignment="Left" Canvas.Left="68" Canvas.Top="104" VerticalAlignment="Top"/>
+            <Canvas.RenderTransform>
+                <TranslateTransform Y="250" />
+            </Canvas.RenderTransform>
+        </Canvas>
     </Grid>
 </Window>

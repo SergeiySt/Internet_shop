@@ -5,21 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InternetShop"
         mc:Ignorable="d"
-        Title="WUser" Height="700" Width="1199">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="149*"/>
-            <ColumnDefinition Width="1050*"/>
-        </Grid.ColumnDefinitions>
-        <Label Content="User" HorizontalAlignment="Left" Margin="10,635,0,0" VerticalAlignment="Top" FontSize="22"/>
-        <TextBlock x:Name="textBlockGoods" HorizontalAlignment="Left" Margin="37,83,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
-        <Label Content="Товари в наявності" HorizontalAlignment="Left" Margin="30,17,0,0" VerticalAlignment="Top"/>
-        <GroupBox Header="Замовлення" Margin="37,342,38,94" Grid.ColumnSpan="2"/>
-        <Label Content="Товар" HorizontalAlignment="Left" Margin="62,370,0,0" VerticalAlignment="Top" Width="38"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="62,401,0,0" VerticalAlignment="Top"/>
-        <Button Content="Замовити" HorizontalAlignment="Left" Margin="938,620,0,0" VerticalAlignment="Top" Width="74" Grid.Column="1"/>
-        <Button Content="Вийти із магазину" HorizontalAlignment="Left" Margin="799,620,0,0" VerticalAlignment="Top" Width="118" Grid.Column="1"/>
-        <Image x:Name="pictureBox" Grid.Column="1" HorizontalAlignment="Left" Height="100" Margin="858,91,0,0" VerticalAlignment="Top" Width="100"/>
-
+        ResizeMode="NoResize"
+        Title="Магазин" Height="749" Width="1199" WindowStartupLocation="CenterScreen" Icon="/Picture/icons855-32.png">
+    <Window.Resources>
+        <local:BytesToImageConverter x:Key="BytesToImageConverter" />
+    </Window.Resources>
+    <Grid Margin="-1,0,1,0">
+        <DataGrid Margin="10,41,10,160" x:Name="GoodsGrid2" AutoGenerateColumns="False" SelectionChanged="GoodsGrid_SelectionChanged2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header ="Назва товару" Width="*" Binding = "{Binding GName}"/>
+                <DataGridTextColumn Header ="Тип товара" Width="*" Binding = "{Binding GType}"/>
+                <DataGridTextColumn Header ="Бренд" Width="*" Binding = "{Binding GBrand}"/>
+                <DataGridTextColumn Header ="Ціна" Width="*" Binding = "{Binding GPrice}"/>
+                <DataGridTextColumn Header ="Опис товару" Width="*"  Binding = "{Binding GDescription}"/>
+                <DataGridTextColumn Header ="Кількість товару" Width="*" Binding = "{Binding GCount}"/>
+                <DataGridTemplateColumn Header ="Зображення" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Width="50" Height="50" Source="{Binding GPicture, Converter={StaticResource BytesToImageConverter}}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="Товари в наявності" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
+        <Label Content="Назва товару:" HorizontalAlignment="Left" Margin="34,589,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBoxNameTovar" HorizontalAlignment="Left" Margin="120,593,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="575"/>
+        <Label Content="Кільсіть:" HorizontalAlignment="Left" Margin="66,611,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.59,0.502"/>
+        <TextBox x:Name="textBoxCount" HorizontalAlignment="Left" Margin="120,615,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="575" TextChanged="textBoxCount_TextChanged"/>
+        <Label Content="Адреса доставки:" HorizontalAlignment="Left" Margin="15,634,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBoxAdress" HorizontalAlignment="Left" Margin="120,638,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="575"/>
+        <Label Content="Загальна сума:" HorizontalAlignment="Left" Margin="29,660,0,0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlockSumm" HorizontalAlignment="Left" Margin="120,665,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="179" Foreground="#FF1557F7"/>
+        <Image x:Name="pictureBox2" HorizontalAlignment="Left" Height="93" Margin="711,589,0,0" VerticalAlignment="Top" Width="103"/>
+        <Button x:Name="buttonExit" Content="Вийти із магазину" Margin="957,636,10,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" Height="34" Click="buttonExit_Click"/>
+        <Button x:Name="buttonOrder" Content="Оформити замовлення" Margin="957,587,10,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" Foreground="#FF2C5DD6" Click="buttonOrder_Click"/>
+        <TextBlock  x:Name="FIO" HorizontalAlignment="Left" Margin="957,11,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" FontSize="14" Foreground="#FF133BDE"/>
     </Grid>
 </Window>

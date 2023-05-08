@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Configuration;
 using Dapper;
+using System.Windows.Forms;
 
 namespace InternetShop
 {
@@ -32,23 +33,6 @@ namespace InternetShop
             connectionString = ConfigurationManager.ConnectionStrings["ConnectionDB"].ConnectionString;
         }
 
-        private void buttonConnectDB_Click(object sender, RoutedEventArgs e)
-        {
-            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionDB"].ConnectionString;
-            using (IDbConnection db = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    db.Open();
-                    MessageBox.Show("Connection successful.", "Примітка", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Connection failed: " + ex.Message, "Примітка", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
-            }
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             WUserRegister wUserRegister = new WUserRegister();
@@ -59,6 +43,12 @@ namespace InternetShop
         {
             string login = textBoxLogin.Text;
             string password = new System.Net.NetworkCredential(string.Empty, passwordBoxPassword.SecurePassword).Password;
+            
+            string surName = "";
+            string Name = "";
+            string pobatkovi = "";
+
+
 
             using (IDbConnection db = new SqlConnection(connectionString))
             {
@@ -67,8 +57,11 @@ namespace InternetShop
 
                 if (clients.Count == 1)
                 {
-                   // var client = clients.First();
-                    WUser wUser = new WUser();
+                    surName = clients[0].CSurname;
+                    Name = clients[0].CName;
+                    pobatkovi = clients[0].CPobatkovi;
+
+                    WUser wUser = new WUser(surName, Name, pobatkovi);
                     wUser.Show();
                 }
                 else
@@ -79,7 +72,7 @@ namespace InternetShop
                     if (personnel.Count == 1)
                     {
                         var admin = personnel.First();
-                        // Пользователь найден в таблице Personnel - он администратор, если его роль равна "admin"
+
                         if (admin.PRole == "admin")
                         {
                             WAdmin wAdmin = new WAdmin();
@@ -87,28 +80,18 @@ namespace InternetShop
                         }
                         else
                         {
-                            // Пользователь найден в таблице Personnel, но не является администратором
-                            WUser wUser = new WUser();
+                            WUser wUser = new WUser(surName, Name, pobatkovi);
                             wUser.Show();
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Невірний логін або пароль", "Помилка авторизації");
+                        System.Windows.MessageBox.Show("Невірний логін або пароль", "Помилка авторизації", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
                     }
                 }
             }
+            this.Close();
         }
-
-        //private bool IsUserAdmin(InfoDB.Client user)
-        //{
-        //    using (IDbConnection db = new SqlConnection(connectionString))
-        //    {
-        //        var admins = db.Query<InfoDB.Personnel>("select * from Personnel where PLogin = @PLogin",
-        //             new { PLogin = user.CLogin }).ToList();
-
-        //        return admins.Count == 1 && admins.First().PRole == "admin";
-        //    }
-        //}
     }
 }
